@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Elysia-ff")]
 [assembly: AssemblyProduct("AutoACTEnd")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Copyright ©  2018 Elysia-ff")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
