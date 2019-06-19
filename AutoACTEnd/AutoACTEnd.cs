@@ -59,7 +59,8 @@ namespace AutoACTEnd
 
                 string time = split[(int)Define.Code.Date];
                 string timeStamp = GetTimeStamp(time);
-                string item = string.Format(Define.matchFoundFormat, timeStamp);
+                string message = split[(int)Define.Code.Message];
+                string item = string.Format(Define.matchFoundFormat, timeStamp, message);
                 listBox1.Items.Add(item);
             }
         }
