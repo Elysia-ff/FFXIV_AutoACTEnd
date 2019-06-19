@@ -19,6 +19,7 @@
 
         public const char logSeparater = '|';
         public const string codeByMe = "00b9";
-        public const string codeByAnother = "0239";
+        public const string codeByParty = "0139";
+        public const string codeByAlliance = "0239";
     }
 }

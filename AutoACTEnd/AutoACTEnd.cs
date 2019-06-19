@@ -53,7 +53,7 @@ namespace AutoACTEnd
 
             // Match found
             string code = split[(int)Define.Code.Code];
-            if (code.Equals(Define.codeByMe) || code.Equals(Define.codeByAnother))
+            if (code.Equals(Define.codeByMe) || code.Equals(Define.codeByParty) || code.Equals(Define.codeByAlliance))
             {
                 ActGlobals.oFormActMain.EndCombat(false);
 
