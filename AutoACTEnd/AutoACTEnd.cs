@@ -44,25 +44,44 @@ namespace AutoACTEnd
             string log = logInfo.logLine;
             string[] split = log.Split(Define.logSeparater);
 
-            //            0  1                                 2
-            // By Me      00|2018-12-15T01:49:32.0000000+09:00|00b9||전투 시작 10초 전! (Ellie)|10d2374e9711bbce03161c326d068b3d
-            // By Another 00|2018-12-15T02:25:45.0000000+09:00|0139||전투 시작 20초 전! ('� 요맘때요맘때'��)|c9b454051d56ece188bbe7fa2a62fcd0
-
-            if (split.Length < (int)Define.Code.Max)
+            if (split.Length < 5)
                 return;
 
-            // Match found
-            string code = split[(int)Define.Code.Code];
-            if (code.Equals(Define.codeByMe) || code.Equals(Define.codeByParty) || code.Equals(Define.codeByAlliance))
+            string idx = split[0];
+            if (idx.Equals("00"))
             {
-                ActGlobals.oFormActMain.EndCombat(false);
+                //            0  1                                 2
+                // By Me      00|2018-12-15T01:49:32.0000000+09:00|00b9||전투 시작 10초 전! (Ellie)|10d2374e9711bbce03161c326d068b3d
+                // By Another 00|2018-12-15T02:25:45.0000000+09:00|0139||전투 시작 20초 전! ('� 요맘때요맘때'��)|c9b454051d56ece188bbe7fa2a62fcd0
 
-                string time = split[(int)Define.Code.Date];
-                string timeStamp = GetTimeStamp(time);
-                string message = split[(int)Define.Code.Message];
-                string item = string.Format(Define.matchFoundFormat, timeStamp, message);
-                listBox1.Items.Add(item);
+                // Match found
+                string param = split[2];
+                if (param.Equals(Define.codeByMe) || param.Equals(Define.codeByParty) || param.Equals(Define.codeByAlliance))
+                {
+                    ExecuteEndEncounter(split[1], split[4]);
+                }
             }
+            else if (idx.Equals("33"))
+            {
+                // 0  1                                 2        3
+                // 33|2019-12-03T20:41:11.3260000+09:00|80037586|80000004|1AF3|00|00|00|45f847035f506788423f9d873ecc74a6
+                string key = split[3];
+
+                if (Define.wipeCodes.ContainsKey(key))
+                {
+                    string message = string.Format(Define.dateFormat, key, Define.wipeCodes[key]);
+                    ExecuteEndEncounter(split[1], message);
+                }
+            }
+        }
+
+        private void ExecuteEndEncounter(string time, string message)
+        {
+            ActGlobals.oFormActMain.EndCombat(false);
+
+            string timeStamp = GetTimeStamp(time);
+            string item = string.Format(Define.matchFoundFormat, timeStamp, message);
+            listBox1.Items.Add(item);
         }
 
         private string GetTimeStamp(string log)
