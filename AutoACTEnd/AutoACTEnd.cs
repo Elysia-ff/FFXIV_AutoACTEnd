@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Advanced_Combat_Tracker;
 
 namespace AutoACTEnd
@@ -28,7 +20,8 @@ namespace AutoACTEnd
             lblStatus = pluginStatusText;
             lblStatus.Text = Define.plugInLoaded;
 
-            ActGlobals.oFormActMain.BeforeLogLineRead += new LogLineEventDelegate(OnBeforeLogRead);
+            ActGlobals.oFormActMain.BeforeLogLineRead -= OnBeforeLogRead;
+            ActGlobals.oFormActMain.BeforeLogLineRead += OnBeforeLogRead;
         }
 
         public void DeInitPlugin()
@@ -41,7 +34,7 @@ namespace AutoACTEnd
 
         private void OnBeforeLogRead(bool isImport, LogLineEventArgs logInfo)
         {
-            string log = logInfo.logLine;
+            string log = logInfo.originalLogLine;
             string[] split = log.Split(Define.logSeparater);
 
             if (split.Length < 5)

@@ -4,17 +4,17 @@ namespace AutoACTEnd
 {
     public static class Define
     {
-        public const string plugInLoaded = "PlugIn Started";
-        public const string plugInUnloaded = "No Status";
-        public const string matchFoundFormat = "{0} :: {1}";
-        public const string dateFormat = "{0} {1}";
+        public static readonly string plugInLoaded = "PlugIn Started";
+        public static readonly string plugInUnloaded = "No Status";
+        public static readonly string matchFoundFormat = "{0} :: {1}";
+        public static readonly string dateFormat = "{0} {1}";
 
-        public const char logSeparater = '|';
-        public const string codeByMe = "00b9";
-        public const string codeByParty = "0139";
-        public const string codeByAlliance = "0239";
+        public static readonly char logSeparater = '|';
+        public static readonly string codeByMe = "00b9";
+        public static readonly string codeByParty = "0139";
+        public static readonly string codeByAlliance = "0239";
 
-        public static Dictionary<string, string> wipeCodes = new Dictionary<string, string>()
+        public static readonly Dictionary<string, string> wipeCodes = new Dictionary<string, string>()
         {
             {"40000001", "Initial commence"},
             {"40000006", "Recommence"},
